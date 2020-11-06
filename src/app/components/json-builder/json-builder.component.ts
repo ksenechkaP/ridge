@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from '../../services/api-service.service';
 
 @Component({
   selector: 'app-json-builder',
@@ -10,10 +11,23 @@ export class JsonBuilderComponent implements OnInit {
   @Input() jsonData;
 
   private data: any;
-  constructor() { }
+  private requestedUrl: any;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-
+    this.requestedUrl = 'https://api.github.com/repos/vmg/redcarpet/issues?state=open';
+    this.api
+         .getListOfGroup(this.requestedUrl)
+         .subscribe(
+           data => {
+             this.data = data;
+             console.log(data);
+           },
+           err => {
+             console.log(err);
+           }
+         );
   }
 
 }
