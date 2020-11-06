@@ -10,13 +10,13 @@ export class JsonBuilderComponent implements OnInit {
   @Input() jsonUrl: any;
   @Input() jsonData;
 
-  private data: any;
-  private requestedUrl: any;
+  public data: any;
+  public requestedUrl: any;
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
-    this.requestedUrl = 'https://api.github.com/repos/vmg/redcarpet/issues?state=open';
+    //this.requestedUrl = 'https://api.github.com/repos/vmg/redcarpet/issues?state=open';
     this.api
          .getListOfGroup(this.requestedUrl)
          .subscribe(
