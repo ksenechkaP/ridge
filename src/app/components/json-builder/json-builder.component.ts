@@ -10,6 +10,7 @@ export class JsonBuilderComponent implements OnInit, OnChanges {
    @Input() jsonURL: any;
   public jsonData;
   private requestedURL: any;
+  public error: string;
 
   constructor(private http: HttpClient) { }
 
@@ -28,10 +29,13 @@ export class JsonBuilderComponent implements OnInit, OnChanges {
   }
 
   public getJson() {
-    console.log('url: ', this.requestedURL);
     return this.http.get(this.requestedURL).subscribe((data) => {
-      console.log('data ', data);
+      this.error = null;
       this.jsonData = data;
-    });
+    },
+      error => {
+        this.jsonData = null;
+        this.error = error;
+      });
   }
 }

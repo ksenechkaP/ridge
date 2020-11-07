@@ -1,6 +1,9 @@
-<div *ngIf="!jsonData">
+<div *ngIf="!jsonData && !error">
   No JSON found
 </div>
 <div *ngIf="jsonData">
     <app-json-item [jsonData]="jsonData"></app-json-item>
+</div>
+<div *ngIf="error" class="error">
+  Wrong URL address.
 </div>
