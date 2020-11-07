@@ -1,0 +1,28 @@
+.json-item {
+  list-style: none;
+}
+
+.json-list-nested {
+  height: auto;
+}
+
+.collapse {
+  display: none;
+}
+.expand {
+  display: block;
+}
+.collapsed {
+  .collapse {
+    display: block;
+  }
+
+  .expand {
+    display: none;
+  }
+
+  + .json-list-nested {
+    height: 0;
+    overflow: hidden;
+  }
+}

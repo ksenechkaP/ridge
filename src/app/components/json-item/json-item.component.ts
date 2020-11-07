@@ -12,4 +12,7 @@ export class JsonItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getValueType(item) {
+    return typeof item === 'object';
+  }
 }

@@ -1,7 +1,13 @@
 
-<ul *ngFor="let item of jsonData | keyvalue; let i=index">
+<ul class="json-item" [ngClass]="{'collapsed': item.collapsed}" *ngFor="let item of jsonData | keyvalue; let i=index">
   <li>
+    <button *ngIf="item.value && getValueType(item.value)" type="button" [ngClass]="{'collapsed': item.collapsed}" (click)="item.collapsed = !item.collapsed">
+      <span class="expand">+</span>
+      <span class="collapse">-</span>
+    </button>
     {{item.key}} - value: {{item.value}}
-    <app-json-item [jsonData]="item.value"></app-json-item>
+    <div class="json-list-nested">
+      <app-json-item [jsonData]="item.value"></app-json-item>
+    </div>
   </li>
 </ul>
