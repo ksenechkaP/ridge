@@ -15,4 +15,9 @@ export class JsonItemComponent implements OnInit {
   getValueType(item) {
     return typeof item === 'object';
   }
+
+  getValLenght(item) {
+      return Object.keys(item).length;
+  }
+
 }

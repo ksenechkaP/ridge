@@ -1,9 +1,18 @@
 .json-item {
   list-style: none;
+
+  li {
+    margin-bottom: 1rem;
+  }
+}
+
+.json-item-key {
+  font-weight: bold;
 }
 
 .json-list-nested {
   height: auto;
+  margin-left: 2rem;
 }
 
 .collapse {

@@ -1,2 +1,7 @@
-<input type="text" [ngModel]="jsonURL" (ngModelChange)="modelChangeFn($event)"/>
-<app-json-builder [jsonURL]="jsonURL"></app-json-builder>
+<section class="main">
+  <div class="main-field">
+    <label>Insert API URL</label>
+      <input class="main-field-input" type="text" [ngModel]="jsonURL" (ngModelChange)="modelChangeFn($event)"/>
+  </div>
+  <app-json-builder [jsonURL]="jsonURL"></app-json-builder>
+</section>
