@@ -1,0 +1,7 @@
+
+<ul *ngFor="let item of jsonData | keyvalue; let i=index">
+  <li>
+    {{item.key}} - value: {{item.value}}
+    <app-json-item [jsonData]="item.value"></app-json-item>
+  </li>
+</ul>

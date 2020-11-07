@@ -1,33 +1,37 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ApiService } from '../../services/api-service.service';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-json-builder',
   templateUrl: './json-builder.component.html',
   styleUrls: ['./json-builder.component.scss']
 })
-export class JsonBuilderComponent implements OnInit {
-  @Input() jsonUrl: any;
-  @Input() jsonData;
+export class JsonBuilderComponent implements OnInit, OnChanges {
+   @Input() jsonURL: any;
+  public jsonData;
+  private requestedURL: any;
 
-  public data: any;
-  public requestedUrl: any;
-
-  constructor(private api: ApiService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    //this.requestedUrl = 'https://api.github.com/repos/vmg/redcarpet/issues?state=open';
-    this.api
-         .getListOfGroup(this.requestedUrl)
-         .subscribe(
-           data => {
-             this.data = data;
-             console.log(data);
-           },
-           err => {
-             console.log(err);
-           }
-         );
+    this.requestedURL = this.jsonURL;
+    if (this.requestedURL) {
+      this.getJson();
+    }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.requestedURL = changes.jsonURL.currentValue;
+    if (this.requestedURL) {
+      this.getJson();
+    }
+  }
+
+  public getJson() {
+    console.log('url: ', this.requestedURL);
+    return this.http.get(this.requestedURL).subscribe((data) => {
+      console.log('data ', data);
+      this.jsonData = data;
+    });
+  }
 }
